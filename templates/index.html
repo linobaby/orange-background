@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OXBT Background Color Replacer</title>
+    <style>
+        body {
+            font-family: 'Palatino Black Italic', serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: orange;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form {
+            margin-top: 20px;
+        }
+
+        .form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form input[type="file"] {
+            margin-bottom: 15px;
+        }
+
+        .form input[type="submit"] {
+            background-color: orange;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form input[type="submit"]:hover {
+            background-color: darkorange;
+        }
+
+        .download-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Orange is the New Meta</h1>
+        <p>Join the Orange Gang</p>
+        <p>Change your PFP!</p>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <form class="form" action="/" method="POST" enctype="multipart/form-data">
+            <label for="file">Select Foreground Image:</label>
+            <input type="file" name="file" id="file" accept="image/*" required>
+
+            <label for="background">Select Background Image:</label>
+            <input type="file" name="background" id="background" accept="image/*" required>
+
+            <input type="submit" value="Upload">
+        </form>
+
+        {% if download_link %}
+            <div class="download-link">
+                <p>Click <a href="{{ url_for('download', filename=download_link) }}">here</a> to download the output image.</p>
+            </div>
+            <div id="twitter-link">
+                Love The OXBT Background Replacer? Follow me on Twitter! 
+                <a href="https://twitter.com/Kler_btc" target="_blank">Follow</a>
+            </div>  
+        {% endif %}
+    </div>
+</body>
+</html>
